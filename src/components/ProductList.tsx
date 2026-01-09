@@ -1,20 +1,32 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { ShopifyProduct } from "@/lib/shopify";
+import { useCartStore } from "@/lib/store";
 
 export default function ProductList({
   products,
 }: {
   products: ShopifyProduct[];
 }) {
+  const { addItem, toggleCart } = useCartStore();
+
+  const handleAddToCart = (product: ShopifyProduct) => {
+    addItem(product);
+    toggleCart(); // Open cart to show user it was added
+  };
+
   return (
-    <div className="py-10">
+    <div>
       <div className="px-5 flex items-end justify-between mb-6">
         <div>
           <h3 className="text-xl font-medium text-slate-900 dark:text-white">
-            Latest Drops
+            Collection
           </h3>
-          <p className="text-sm text-slate-500 mt-1">Fresh from the studio.</p>
+          <p className="text-sm text-slate-500 mt-1">
+            Discover our selected pieces.
+          </p>
         </div>
         <a
           className="text-sm font-medium text-slate-900 dark:text-white underline decoration-1 underline-offset-4 hover:text-slate-600"
@@ -47,8 +59,11 @@ export default function ProductList({
                     </span>
                   </div>
                 )}
-                <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button className="w-10 h-10 rounded-full bg-white text-slate-900 shadow-lg flex items-center justify-center hover:bg-slate-50">
+                <div className="absolute bottom-3 right-3 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity">
+                  <button
+                    onClick={() => handleAddToCart(product)}
+                    className="w-10 h-10 rounded-full bg-white text-slate-900 shadow-lg flex items-center justify-center hover:bg-slate-50 active:scale-95 transition-transform"
+                  >
                     <span className="material-symbols-outlined text-xl">
                       add
                     </span>

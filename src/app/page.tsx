@@ -1,14 +1,18 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import CategoryGrid from "@/components/CategoryGrid";
-import ProductList from "@/components/ProductList";
+import ShopSection from "@/components/ShopSection";
 import FeaturedProduct from "@/components/FeaturedProduct";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
-import { getProducts } from "@/lib/shopify";
+import CartDrawer from "@/components/CartDrawer";
+import { getProducts, getCollections } from "@/lib/shopify";
 
 export default async function Home() {
-  const products = await getProducts();
+  const [products, collections] = await Promise.all([
+    getProducts(),
+    getCollections(),
+  ]);
 
   return (
     <div className="flex justify-center min-h-screen">
@@ -17,11 +21,12 @@ export default async function Home() {
         <main className="flex-1 overflow-y-auto overflow-x-hidden pb-10 no-scrollbar bg-white dark:bg-[#0f172a]">
           <Hero />
           <CategoryGrid />
-          <ProductList products={products} />
+          <ShopSection initialProducts={products} collections={collections} />
           <FeaturedProduct />
           <Newsletter />
           <Footer />
         </main>
+        <CartDrawer />
       </div>
     </div>
   );

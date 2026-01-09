@@ -1,6 +1,41 @@
+"use client";
+
 import Image from "next/image";
+import { useCartStore } from "@/lib/store";
+import { ShopifyProduct } from "@/lib/shopify";
 
 export default function FeaturedProduct() {
+  const { addItem, toggleCart } = useCartStore();
+
+  const handleAddToCart = () => {
+    // Create a dummy product for the featured item
+    const featuredProduct: ShopifyProduct = {
+      id: "featured-1",
+      title: "Leather Daily Tote",
+      description:
+        "Handcrafted from premium full-grain leather. Designed to age beautifully with use.",
+      featuredImage: {
+        id: "img-featured-1",
+        url: "https://lh3.googleusercontent.com/aida-public/AB6AXuA41W4jBiNib7VjU8gpX1GvB-h1ZIF8uy9vhOvQbMIe4RTjQEC97Yhry3fjn8_icCFe9lLJdnsWYiDEP-riOIdwgvEO5dtDALJiH9ZMVl0OTEUX64sUR3OiHUtjSdFMrB4gGxYycT5DgGuAhKarJdS66cj5RjIgxyQm_6pBiqWHjNqIxtIuWSj4rkud5O62fohVoCqzYqaOzKmpWhPLB8Zklr0toxfGfQMejyvgFKe4VOam6dIgv0AwU0FwdhXwzd6jiSA6tJTdNHc",
+      },
+      variants: {
+        edges: [
+          {
+            node: {
+              price: {
+                amount: "180",
+                currencyCode: "USD",
+              },
+            },
+          },
+        ],
+      },
+    };
+
+    addItem(featuredProduct);
+    toggleCart();
+  };
+
   return (
     <div className="px-5 pb-10">
       <div className="relative w-full rounded-lg overflow-hidden bg-gray-50 dark:bg-slate-900 group">
@@ -30,7 +65,10 @@ export default function FeaturedProduct() {
                 $180
               </span>
             </div>
-            <button className="w-full py-3 border border-slate-300 dark:border-slate-600 text-slate-900 dark:text-white rounded hover:border-slate-900 dark:hover:border-white transition-colors text-sm font-medium">
+            <button
+              onClick={handleAddToCart}
+              className="w-full py-3 border border-slate-300 dark:border-slate-600 text-slate-900 dark:text-white rounded hover:border-slate-900 dark:hover:border-white text-sm font-medium active:scale-95 transition-all"
+            >
               Add to Cart
             </button>
           </div>
