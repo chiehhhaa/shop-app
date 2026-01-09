@@ -1,8 +1,6 @@
-import React from "react";
-
 export default function Hero() {
   return (
-    <div className="relative w-full aspect-[4/5] bg-slate-100 dark:bg-slate-800 overflow-hidden">
+    <div className="relative w-full aspect-4/5 bg-slate-100 dark:bg-slate-800 overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center transition-transform duration-10000 hover:scale-110"
         style={{
