@@ -35,6 +35,15 @@
   scrollbar-width: none;
 }
 
+html,
+body {
+  height: 100%;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 防止 body 本身滾動，由內層容器負責 */
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
