@@ -167,7 +167,7 @@ export default function CartDrawer() {
 
           {/* Footer */}
           {items.length > 0 && (
-            <div className="border-t border-slate-100 dark:border-slate-800 p-6 bg-white dark:bg-slate-900">
+            <div className="border-t border-slate-100 dark:border-slate-800 p-6 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] bg-white dark:bg-slate-900">
               <div className="space-y-3 mb-6">
                 <div className="flex items-center justify-between">
                   <span className="text-[13px] text-slate-500 dark:text-slate-400">

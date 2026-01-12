@@ -15,7 +15,7 @@ export default function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 dark:bg-[#0f172a]/95 backdrop-blur-sm border-b border-gray-100 dark:border-slate-800">
+    <header className="sticky top-0 z-40 bg-white/95 dark:bg-[#0f172a]/95 backdrop-blur-sm border-b border-gray-100 dark:border-slate-800 pt-[env(safe-area-inset-top)]">
       <div className="h-1 w-full"></div>
       <div className="flex items-center justify-between px-5 py-3.5 max-w-md mx-auto">
         <h1 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
