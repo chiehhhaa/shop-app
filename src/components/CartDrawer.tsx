@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useSyncExternalStore, useEffect } from "react";
 import Image from "next/image";
 import { useCartStore } from "@/lib/store";
 
@@ -17,6 +17,18 @@ export default function CartDrawer() {
     () => false
   );
 
+  useEffect(() => {
+    const mainContent = document.querySelector("main");
+    if (isOpen && mainContent) {
+      mainContent.style.overflow = "hidden";
+    } else if (mainContent) {
+      mainContent.style.overflow = "";
+    }
+    return () => {
+      if (mainContent) mainContent.style.overflow = "";
+    };
+  }, [isOpen]);
+
   if (!mounted) return null;
 
   return (
@@ -32,7 +44,7 @@ export default function CartDrawer() {
       {/* Drawer - Sliding from right, contained within mobile container */}
       <div
         className={`absolute top-0 right-0 z-50 h-full w-[85%] bg-white dark:bg-slate-900 shadow-2xl transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-          isOpen ? "translate-x-0" : "translate-x-full"
+          isOpen ? "translate-x-0 visible" : "translate-x-full invisible"
         }`}
       >
         <div className="flex h-full flex-col">
