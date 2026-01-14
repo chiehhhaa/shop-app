@@ -6,7 +6,27 @@ interface CartItem extends ShopifyProduct {
   quantity: number;
 }
 
-interface CartState {
+interface AuthUser {
+  name: string;
+  email: string;
+}
+
+interface UIState {
+  isSidebarOpen: boolean;
+  toggleSidebar: () => void;
+  closeSidebar: () => void;
+  isSearchOpen: boolean;
+  toggleSearch: () => void;
+  closeSearch: () => void;
+}
+
+interface AuthState {
+  user: AuthUser | null;
+  login: (name: string, email: string) => void;
+  logout: () => void;
+}
+
+interface CartState extends UIState, AuthState {
   items: CartItem[];
   isOpen: boolean;
   addItem: (product: ShopifyProduct) => void;
@@ -21,6 +41,20 @@ interface CartState {
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
+      // UI State
+      isSidebarOpen: false,
+      toggleSidebar: () => set({ isSidebarOpen: !get().isSidebarOpen }),
+      closeSidebar: () => set({ isSidebarOpen: false }),
+      isSearchOpen: false,
+      toggleSearch: () => set({ isSearchOpen: !get().isSearchOpen }),
+      closeSearch: () => set({ isSearchOpen: false }),
+
+      // Auth State
+      user: null,
+      login: (name, email) => set({ user: { name, email } }),
+      logout: () => set({ user: null }),
+
+      // Cart State
       items: [],
       isOpen: false,
       addItem: (product) => {

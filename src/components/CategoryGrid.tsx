@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CategoryGrid() {
   const categories = [
@@ -26,9 +27,9 @@ export default function CategoryGrid() {
       </div>
       <div className="grid grid-cols-2 gap-3">
         {categories.map((category) => (
-          <a
+          <Link
             key={category.name}
-            href={category.href}
+            href="/products"
             className="group relative aspect-[1.4] overflow-hidden rounded bg-gray-100 dark:bg-slate-800"
           >
             <Image
@@ -43,7 +44,7 @@ export default function CategoryGrid() {
                 {category.name}
               </span>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
     </div>

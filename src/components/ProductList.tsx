@@ -28,12 +28,6 @@ export default function ProductList({
             Discover our selected pieces.
           </p>
         </div>
-        <a
-          className="text-sm font-medium text-slate-900 dark:text-white underline decoration-1 underline-offset-4 hover:text-slate-600"
-          href="#"
-        >
-          View all
-        </a>
       </div>
       <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 px-5 pb-6 no-scrollbar">
         {products.map((product) => {

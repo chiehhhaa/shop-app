@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useCartStore } from "@/lib/store";
 
 export default function CartDrawer() {
@@ -186,14 +187,16 @@ export default function CartDrawer() {
                   </span>
                 </div>
               </div>
-              <button className="group relative w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 py-4.5 rounded-full text-sm font-bold shadow-xl shadow-slate-200 dark:shadow-none transition-all active:scale-[0.96] overflow-hidden">
-                <div className="relative z-10 flex items-center justify-center gap-2">
-                  <span>Checkout</span>
-                  <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">
-                    arrow_forward
-                  </span>
-                </div>
-              </button>
+              <Link
+                href="/checkout"
+                onClick={toggleCart}
+                className="group relative w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 py-4.5 rounded-full text-sm font-bold shadow-xl shadow-slate-200 dark:shadow-none transition-all active:scale-[0.96] overflow-hidden flex items-center justify-center gap-2"
+              >
+                <span>Checkout</span>
+                <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">
+                  arrow_forward
+                </span>
+              </Link>
             </div>
           )}
         </div>

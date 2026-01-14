@@ -7,6 +7,7 @@ import {
   getProductsByCollection,
 } from "@/lib/shopify";
 import ProductList from "./ProductList";
+import Link from "next/link";
 
 interface ShopSectionProps {
   initialProducts: ShopifyProduct[];
@@ -72,6 +73,18 @@ export default function ShopSection({
         }`}
       >
         <ProductList products={products} />
+      </div>
+
+      <div className="px-5 mt-10">
+        <Link
+          href="/products"
+          className="flex items-center justify-center w-full py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm font-bold text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-sm"
+        >
+          View All Products
+          <span className="material-symbols-outlined ml-2 text-lg">
+            arrow_forward
+          </span>
+        </Link>
       </div>
     </div>
   );

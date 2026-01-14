@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Hero() {
   return (
     <div className="relative w-full aspect-4/5 bg-slate-100 dark:bg-slate-800 overflow-hidden">
@@ -17,9 +19,12 @@ export default function Hero() {
         <p className="text-lg font-light mb-6 text-white/90">
           Curated styles for the season.
         </p>
-        <button className="bg-white text-slate-900 px-8 py-3 rounded text-sm font-medium hover:bg-gray-100 transition-colors shadow-sm">
+        <Link
+          href="/products"
+          className="bg-white text-slate-900 px-8 py-3 rounded text-sm font-medium hover:bg-gray-100 transition-colors shadow-sm inline-block"
+        >
           Shop Collection
-        </button>
+        </Link>
       </div>
     </div>
   );

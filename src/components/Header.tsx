@@ -2,9 +2,11 @@
 
 import React, { useSyncExternalStore } from "react";
 import { useCartStore } from "@/lib/store";
+import Link from "next/link";
 
 export default function Header() {
-  const { totalItems, toggleCart } = useCartStore();
+  const { totalItems, toggleCart, toggleSidebar, toggleSearch } =
+    useCartStore();
   const mounted = useSyncExternalStore(
     (callback) => {
       const timeout = setTimeout(callback, 0);
@@ -18,11 +20,17 @@ export default function Header() {
     <header className="sticky top-0 z-40 bg-white/95 dark:bg-[#0f172a]/95 backdrop-blur-sm border-b border-gray-100 dark:border-slate-800 pt-[env(safe-area-inset-top)]">
       <div className="h-1 w-full"></div>
       <div className="flex items-center justify-between px-5 py-3.5 max-w-md mx-auto">
-        <h1 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
+        <Link
+          href="/"
+          className="text-xl font-semibold tracking-tight text-slate-900 dark:text-white hover:opacity-70 transition-opacity"
+        >
           mock.shop
-        </h1>
+        </Link>
         <div className="flex items-center gap-2">
-          <button className="flex items-center justify-center p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-700 dark:text-white transition-colors">
+          <button
+            onClick={toggleSearch}
+            className="flex items-center justify-center p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-700 dark:text-white transition-colors"
+          >
             <span className="material-symbols-outlined text-[24px]">
               search
             </span>
@@ -40,7 +48,10 @@ export default function Header() {
               </span>
             )}
           </button>
-          <button className="flex items-center justify-center p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-700 dark:text-white transition-colors">
+          <button
+            onClick={toggleSidebar}
+            className="flex items-center justify-center p-2 rounded-md hover:bg-gray-50 dark:hover:bg-slate-800 text-slate-700 dark:text-white transition-colors"
+          >
             <span className="material-symbols-outlined text-[24px]">menu</span>
           </button>
         </div>
